@@ -17,3 +17,10 @@ install:
 - pip install -r requirements.txt
 script:
 - sonar-scanner -Dsonar.login=$SONAR_TOKEN
+deploy:
+  provider: heroku
+  api_key:
+    secure: ettFrfA5TMUhqfKSUDf8RckDkwEomMggwNkFgbD091zgNJY/FSq33ZcuoiOwtILHujD13CudmMIS1UYy+jwkfDnuTfD4f7gW5jPgwp3igT8EBb6/4aKAF7v88xOGY1GzajUdNySgn1mlF7+u7cTFCYQwCTNlJ7q/C6wmpw3SMFVgOpk2HRrL/UFYaSANpETUwwZpoTkmBykw/lXN9/lzYfrIbbL1Xn6kAutQepSL8VZZfGvPazY+6yogkjv/ld4CFStFn5nKnu8SO6QN+iylp70QeXCspl6xkqXUdhsZbA0pLI3RqomOuVwZuS+m1cqn+wzNzYTNRP+GyY2wohRSTdD8dsc9XWfJIm9ajvVEoA7cmGAyN09Pyu9VCf9+aUfeIzXDWe7wzsAifMRI4ijFzecOxB//02vRm2EopYUCaAZcPBglSe5kRbLxELitVdCPtsVq5K/CRbr1Fk21J+LWOvfYTHzpYRD6O7n3M2YxEZP33IjpfPcn+j3T1XgILZIdNz7uUCVMDHV4cZ2YJaBMDFRuF2AMok50JLDb1GGpcWLUJy3mMDYlzsum+yL+pYnSLrfxrtFar5gHOfrwx42XM/IvvTfHxvYdfHjXVhG1wIO/cUxL68JvNLdgYVEw1QEnPUjKpAI5KhWjxmlHiASMJRwMzJ0BvlLO75T96sW5N5Y=
+  app: api-taiga
+  on:
+    repo: asleao/api-taiga
