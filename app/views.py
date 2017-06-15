@@ -14,10 +14,12 @@ def get_token(username,password):
 	)
 	print (api.token)
 
+@csrf_exempt
 def criar_projeto(request):
 	api = TaigaAPI(token= request.POST['token'])
 	projeto = api.projects.create(request.POST['nome_projeto'], request.POST['nome_projeto'], is_private = False)
 
+@csrf_exempt
 def adicionar_colaboradores(request):
 	api = TaigaAPI(token=request.POST['token'])
 	usernames = request.POST['usernames']
