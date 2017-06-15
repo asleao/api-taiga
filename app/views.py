@@ -16,7 +16,7 @@ def get_token(username,password):
 
 def criar_projeto(request):
 	api = TaigaAPI(token= request.POST['token'])
-	projeto = api.projects.create(request.POST['nome_projeto'], request.POST['descricao_projeto'], is_private = False)
+	projeto = api.projects.create(request.POST['nome_projeto'], request.POST['nome_projeto'], is_private = False)
 
 def adiciona_colaboradores():
 	api = TaigaAPI(token=request.POST['token'])
