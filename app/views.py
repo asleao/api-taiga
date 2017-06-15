@@ -19,16 +19,17 @@ def criar_projeto(request):
 	projeto = api.projects.create(request.POST['nome_projeto'], request.POST['descricao_projeto'], is_private = False)
 
 def adiciona_colaboradores():
- 	api = TaigaAPI()
- 	colaboradores = ['asleao']
- 	api.auth(
-	    username='lesw',
-	    password='les123'
-	)
+	api = TaigaAPI()
+	colaboradores = ['asleao']
+	api.auth(username='lesw',password='les123')
 
- 	url = 'https://api.taiga.io/api/v1/memberships'
- 	data_json ={"project": 1, "role": 3, "username": "test-user@test.com"}	
- 	# authorization = 'Bearer '+ api.token 	
-	headers = {'Content-Type': 'application/json', 'Authorization':'Bearer <token>'}
+	projeto = api.projects.get_by_slug('lesw-nome_projeto')	
+	role = projeto.add_role('Desenvolvedor', permissions=["add_issue", "modify_issue"])
+		
+	url = 'https://api.taiga.io/api/v1/memberships'
+	data_json ={"project": 202593, "role": role.id, "username": "andre.sp.leao@gmail.com"}	
+	authorization = 'Bearer '+ api.token 	
+	headers = {'Content-Type': 'application/json', 'Authorization': authorization}
 
 	r = requests.post(url, data=json.dumps(data_json), headers=headers)
+	print(r.content)
