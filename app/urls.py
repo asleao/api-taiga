@@ -5,5 +5,5 @@ from app.views import *
 
 urlpatterns = [
     url(r'^criar_projeto/$', criar_projeto, name="criar_projeto"),
-    url(r'^adiciona_colaboradores/$', adiciona_colaboradores, name="adiciona_colaboradores"),
+    url(r'^adicionar_colaboradores/$', adicionar_colaboradores, name="adicionar_colaboradores"),
 ]
