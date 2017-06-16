@@ -36,5 +36,28 @@ def adicionar_colaboradores(request):
 
 		r = requests.post(url, data=json.dumps(data_json), headers=headers)
 		print(r.content)
+	return HttpResponse('funcionou')
+
+@csrf_exempt
+def remover_colaboradores(request):
+	api = TaigaAPI(token=request.POST['token'])
+	usernames = json.loads(request.POST['usernames'])
+	projeto_nome = request.POST['nome_projeto']
+
+	projeto = api.projects.get_by_slug(projeto_nome)	
+	members = projeto.list_memberships()
+	membros_a_remover = []
+	for member in members:
+		if (member.email in usernames):
+			membros_a_remover.append(member.id)
+	print(membros_a_remover)
+	for membro in membros_a_remover:		
+		url = 'https://api.taiga.io/api/v1/memberships/'+str(membro)				
+		authorization = 'Bearer '+ api.token 	
+		headers = {'Content-Type': 'application/json', 'Authorization': authorization}
+		r = requests.delete(url, headers=headers)
+		print(r)
+		print(r.content)
 	return HttpResponse('funcionou')	
+
 
